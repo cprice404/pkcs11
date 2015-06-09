@@ -1,4 +1,5 @@
 require "pkcs11"
+require 'pkcs11/jruby_pkcs11'
 
 def find_softokn
   if RUBY_PLATFORM =~ /mswin|mingw/
@@ -54,7 +55,8 @@ def softokn_params_string
 end
 
 def open_softokn(so_path=nil)
-  PKCS11.open(so_path || find_softokn, :flags=>0, :pReserved=>softokn_params_string)
+  # PKCS11.open(so_path || find_softokn, :flags=>0, :pReserved=>softokn_params_string)
+  JRubyPkcs11.new
 end
 
 $pkcs11 = nil
